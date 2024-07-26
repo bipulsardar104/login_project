@@ -29,12 +29,18 @@ include "db.php";
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password</label>
-                    <input type="password" id="pwd" name="pwd" placeholder="Password" required>
+                    <input type="password" id="pwd" name="pwd" required>
                 </div>
                 <div class="sign_btn">
                     <button type="submit">Sign Up</button>
+                    <button type="button" onclick="redirectToSignIn()">Sign In</button>
                 </div>
             </form>
+            <script>
+                function redirectToSignIn() {
+                    window.location.href = 'sign.php';
+                }
+            </script>
         </div>
     </div>
 </body>
