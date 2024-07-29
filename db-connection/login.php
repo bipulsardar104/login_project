@@ -1,15 +1,6 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "login";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include "./main-connection-db-model.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $pwd = $_POST['pwd'];
@@ -21,9 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->fetch() && password_verify($pwd, $hashed_pwd)) {
         $_SESSION['fname'] = $fname;
         $_SESSION['lname'] = $lname;
-        echo "Sign in successful. Welcome " . $fname . " " . $lname;
+        $_SESSION['email'] = $email;
+        if (http_response_code(200)) {
+            header("Location: ../src/success.php");
+            exit();
+        }
     } else {
-        echo "Invalid email or password.";
+        echo '<script>alert("No user found");
+        window.location.href = "../src/sign.php"</script>';
     }
 
     $stmt->close();

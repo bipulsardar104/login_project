@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "./db-connection/db.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,13 +8,13 @@ include "db.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
 </head>
 
 <body>
     <div class="main-div">
         <div class="inside-main">
-            <form action="db.php" method="post">
+            <form action="./db-connection/db.php" method="post">
                 <div class="form-group">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="First Name" required>
@@ -28,8 +28,8 @@ include "db.php";
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password</label>
-                    <input type="password" id="pwd" name="pwd" required>
+                    <label for="pwdd">Password</label>
+                    <input type="password" id="pwdd" name="pwdd" placeholder="Password" required>
                 </div>
                 <div class="sign_btn">
                     <button type="submit">Sign Up</button>
@@ -38,7 +38,7 @@ include "db.php";
             </form>
             <script>
                 function redirectToSignIn() {
-                    window.location.href = 'sign.php';
+                    window.location.href = './src/sign.php';
                 }
             </script>
         </div>
