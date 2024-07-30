@@ -9,24 +9,42 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+function validate_password($password)
+{
+    $pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).+$/';
+    if (preg_match($pattern, $password)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $email = $_POST['email'];
-    $pwd = password_hash($_POST['pwdd'], PASSWORD_DEFAULT);
+    if (validate_password($_POST['pwdd'])) {
+        $pwd = password_hash($_POST['pwdd'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO userdetails (firstName, lastName, email, password) VALUES ('$fname', '$lname', '$email', '$pwd')";
+        $sql = "INSERT INTO userdetails (firstName, lastName, email, password) VALUES ('$fname', '$lname', '$email', '$pwd')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>
         alert('New record created successfully');
-        window.location.href = '../src/sign.php';
+        window.location.href = '../index.php';
         </script>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-        header("Location: ../index.php");
-    }
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "<scrip>alert('Some Issue Occured')</script>";
+        }
 
-    $conn->close();
+        $conn->close();
+    } else {
+        echo "<script>
+        alert('Password format is incorrect');
+        window.location.href = '../index.php';
+        </script>";
+    }
 }
 ?>

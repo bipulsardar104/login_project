@@ -14,12 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['lname'] = $lname;
         $_SESSION['email'] = $email;
         if (http_response_code(200)) {
-            header("Location: ../src/success.php");
+            header("Location: ./employee_information-db-model.php");
             exit();
         }
     } else {
         echo '<script>alert("No user found");
-        window.location.href = "../src/sign.php"</script>';
+        window.location.href = "../index.php"</script>';
     }
 
     $stmt->close();

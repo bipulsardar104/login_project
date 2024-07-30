@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute() === TRUE) {
             echo "<script>
             alert('Password updated successfully');
-            window.location.href = '../src/sign.php';
+            window.location.href = '../index.php';
             </script>";
         } else {
             echo "Error: " . $stmt->error;
