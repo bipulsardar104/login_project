@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo '<script>alert("Record Deleted Successfully");
-        window.location.href ="./employee_information-db-model.php"</script>';
+        location.reload()
+        window.location.href ="./employee_information-db-model.php";</script>';
     } else {
         echo "Error: " . $stmt->error;
     }

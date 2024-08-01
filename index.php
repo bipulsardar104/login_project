@@ -6,7 +6,8 @@ include "./db-connection/db.php";
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
         <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm" type="email" id="email" name="email" placeholder="Email" required>
+            aria-describedby="inputGroup-sizing-sm" type="email" id="email_to_login" name="email" placeholder="Email"
+            required>
     </div>
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
@@ -51,7 +52,7 @@ include "./db-connection/db.php";
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
                         <input class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm" type="email" id="email" name="email"
+                            aria-describedby="inputGroup-sizing-sm" type="email" id="email_to_create" name="email"
                             placeholder="Email" required>
                     </div>
                     <div class="input-group input-group-sm mb-3">
@@ -77,25 +78,75 @@ include "./db-connection/db.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="./db-connection/forgotpwd-db-model.php" method="post">
-
+                <form id="forgotPwdForm">
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
                         <input class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm" type="email" id="email" name="email"
+                            aria-describedby="inputGroup-sizing-sm" type="email" id="email_to_reset" name="email"
                             placeholder="Email" required>
                     </div>
-                
-                <script>
-                    function redirectToSignIn() {
-                        window.location.href = '../src/sign.php';
-                    }
-                </script>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button class='btn btn-success col-md-6 m-1 fa-solid fa-font' type="submit">Send Confirmation
                     Link</button>
+            </div>
+            </form>
+            <script>
+                document.getElementById('forgotPwdForm').addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    const email = document.getElementById('email_to_reset').value;
+                    console.log(email);
+                    fetch('./db-connection/forgotpwd-db-model.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({
+                            email: email
+                        })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                document.getElementById('otp_email').value = email;
+                                const otpModal = new bootstrap.Modal(document.getElementById('otp'));
+                                otpModal.show();
+                            } else {
+                                alert('An error occurred. Please try again.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred. Please try again.');
+                        });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="otp" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="otpModalLabel">Reset Password</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="./db-connection/otp-matching.php" method="post">
+                    <input type="hidden" name="email" id="otp_email">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Enter the OTP</span>
+                        <input class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" type="text" id="otp" name="otp"
+                            placeholder="Enter OTP" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class='btn btn-success col-md-6 m-1 fa-solid fa-font' type="submit" name="otpVerify"
+                    data-bs-toggle="modal" data-bs-target="#otp">Verify OTP</button>
             </div>
             </form>
         </div>

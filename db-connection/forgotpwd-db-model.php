@@ -1,7 +1,7 @@
 <?php
 include "./main-connection-db-model.php";
 session_start();
-
+echo "<script>console.log('hello')</script>";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $stmt = $conn->prepare("SELECT firstName, lastName, password FROM userdetails WHERE email = ?");
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['lname'] = $lname;
         $_SESSION['email'] = $email;
         $stmt->close();
-        header("Location: ../src/reset_pwd.php?email=" . urlencode($email));
+        header("Location: ../assets/test.php?email=" . urlencode($email));
         exit();
     } else {
         echo '<script>alert("No user found");

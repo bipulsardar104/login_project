@@ -26,6 +26,9 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
+                            <div class="navbar p-1 mx-8">
+                                hii
+                            </div>
                             <h1>Employee Details: </h1>
                         </div>
                     </div>
@@ -63,7 +66,7 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (count($employees) >= 0): ?>
+                                    <?php if (count($employees) > 0): ?>
                                         <?php foreach ($employees as $index => $employee): ?>
                                             <tr style="text-align: center;">
                                                 <td><?php echo htmlspecialchars($index + 1); ?></td>
@@ -72,28 +75,104 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                                                 <td><?php echo htmlspecialchars($employee['email']); ?></td>
                                                 <td><?php echo htmlspecialchars($employee['phone_no']); ?></td>
                                                 <td><?php echo htmlspecialchars($employee['dept']); ?></td>
-
                                                 <td style="text-align: center;">
-                                                    <form action="./edit-employee.php" method="get">
-                                                        <input type="hidden" name="user_id"
-                                                            value="<?php echo htmlspecialchars($employee['user_id']); ?>">
-                                                        <button type="submit"
-                                                            style="background-color: transparent; border: none; color: brown; cursor: pointer;">
-                                                            <i class="fas fa-pencil-alt"></i>
-                                                        </button>
-
-                                                    </form>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#editEmp-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                        style="background-color: transparent; border: none; color: red; cursor: pointer;">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
+                                                    <div class="modal fade"
+                                                        id="editEmp-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                        tabindex="-1"
+                                                        aria-labelledby="editModalLabel-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Fill the
+                                                                        employee details:</h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="../db-connection/edit-employee.php"
+                                                                        method="post">
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="fname-<?php echo htmlspecialchars($employee['user_id']); ?>">First
+                                                                                Name</label>
+                                                                            <input type="text"
+                                                                                id="fname-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                                                name="fname"
+                                                                                value="<?php echo htmlspecialchars($employee['fname']); ?>"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="lname-<?php echo htmlspecialchars($employee['user_id']); ?>">Last
+                                                                                Name</label>
+                                                                            <input type="text"
+                                                                                id="lname-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                                                name="lname"
+                                                                                value="<?php echo htmlspecialchars($employee['lname']); ?>"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="email-<?php echo htmlspecialchars($employee['user_id']); ?>">Email</label>
+                                                                            <input type="email"
+                                                                                id="email-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                                                name="email"
+                                                                                value="<?php echo htmlspecialchars($employee['email']); ?>"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="phone_no-<?php echo htmlspecialchars($employee['user_id']); ?>">Phone
+                                                                                Number</label>
+                                                                            <input type="text"
+                                                                                id="phone_no-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                                                name="phone_no"
+                                                                                value="<?php echo htmlspecialchars($employee['phone_no']); ?>"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="dept-<?php echo htmlspecialchars($employee['user_id']); ?>">Department</label>
+                                                                            <input type="text"
+                                                                                id="dept-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                                                name="dept"
+                                                                                value="<?php echo htmlspecialchars($employee['dept']); ?>"
+                                                                                required>
+                                                                        </div>
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="<?php echo htmlspecialchars($employee['user_id']); ?>">
+                                                                        <div class="sign_btn">
+                                                                            <button type="submit">Update Employee</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td style="text-align: center;">
                                                     <form action="../db-connection/delete-employee.php" method="post">
                                                         <input type="hidden" name="user_id"
                                                             value="<?php echo htmlspecialchars($employee['user_id']); ?>">
-                                                        <div class="modal fade" id="deleteConfirmation" tabindex="-1"
-                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteConfirmationModal-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                            style="background-color: transparent; border: none; color: red; cursor: pointer;">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                        <div class="modal fade"
+                                                            id="deleteConfirmationModal-<?php echo htmlspecialchars($employee['user_id']); ?>"
+                                                            tabindex="-1" aria-labelledby="deleteConfirmationLabel"
+                                                            aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
-                                                                        You sure to delete the record ?
+                                                                        Are you sure you want to delete this record?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
@@ -104,10 +183,6 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#deleteConfirmation"
-                                                            style="background-color: transparent; border: none; color: red; cursor: pointer;">
-                                                            <i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -118,6 +193,7 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
+
                             </table>
 
                         </form>
@@ -178,8 +254,10 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+            function reload() {
+                location.reload()
+            }</script>
 </body>
 
 </html>
