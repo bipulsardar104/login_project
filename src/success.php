@@ -26,9 +26,7 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="navbar p-1 mx-8">
-                                hii
-                            </div>
+
                             <h1>Employee Details: </h1>
                         </div>
                     </div>
@@ -45,14 +43,13 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
 
                             </div>
                             <script>function redirectPage(where) {
-                                    if (where == 'adding') {
-                                        window.location.href = "./add-employees.php"
-                                    }
-                                    else if (where == 'logOut') {
+                                    if (where == 'logOut') {
+                                        sessionStorage.clear();
+                                        localStorage.clear();
                                         window.location.href = "../index.php"
                                     }
                                 }</script>
-                            <table border="1" class="table table-striped border border-success p-2 mb-2">
+                            <table border="1" class="table table-hover border border-success p-2 mb-2">
                                 <thead>
                                     <tr style="text-align: center;">
                                         <th style="padding: 10px;">Sl No</th>
@@ -68,8 +65,16 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                                 <tbody>
                                     <?php if (count($employees) > 0): ?>
                                         <?php foreach ($employees as $index => $employee): ?>
-                                            <tr style="text-align: center;">
-                                                <td><?php echo htmlspecialchars($index + 1); ?></td>
+                                            <tr style="text-align: center;"
+                                                onclick="hello(<?php echo htmlspecialchars($employee['user_id']); ?>)">
+                                                <script>function hello(userId) {
+                                                        return userId;
+                                                    }</script>
+
+                                                <td><?php echo htmlspecialchars($index + 1); ?>
+                                                    <input type="hidden" name="id_from_table" id="id_from_table"
+                                                        value="<?php echo htmlspecialchars($employee['user_id']); ?>">
+                                                </td>
                                                 <td><?php echo htmlspecialchars($employee['fname']); ?></td>
                                                 <td><?php echo htmlspecialchars($employee['lname']); ?></td>
                                                 <td><?php echo htmlspecialchars($employee['email']); ?></td>
@@ -97,58 +102,73 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
                                                                 <div class="modal-body">
                                                                     <form action="../db-connection/edit-employee.php"
                                                                         method="post">
-                                                                        <div class="form-group">
-                                                                            <label
-                                                                                for="fname-<?php echo htmlspecialchars($employee['user_id']); ?>">First
-                                                                                Name</label>
-                                                                            <input type="text"
+
+                                                                        <div class="input-group input-group-sm mb-3">
+                                                                            <span class="input-group-text"
+                                                                                id="inputGroup-sizing-sm">First Name</span>
+                                                                            <input class="form-control"
+                                                                                aria-label="Sizing example input"
+                                                                                aria-describedby="inputGroup-sizing-sm"
+                                                                                type="text"
                                                                                 id="fname-<?php echo htmlspecialchars($employee['user_id']); ?>"
                                                                                 name="fname"
                                                                                 value="<?php echo htmlspecialchars($employee['fname']); ?>"
                                                                                 required>
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label
-                                                                                for="lname-<?php echo htmlspecialchars($employee['user_id']); ?>">Last
-                                                                                Name</label>
-                                                                            <input type="text"
+
+                                                                        <div class="input-group input-group-sm mb-3">
+                                                                            <span class="input-group-text"
+                                                                                id="inputGroup-sizing-sm">Last Name</span>
+                                                                            <input class="form-control"
+                                                                                aria-label="Sizing example input"
+                                                                                aria-describedby="inputGroup-sizing-sm"
                                                                                 id="lname-<?php echo htmlspecialchars($employee['user_id']); ?>"
                                                                                 name="lname"
                                                                                 value="<?php echo htmlspecialchars($employee['lname']); ?>"
                                                                                 required>
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label
-                                                                                for="email-<?php echo htmlspecialchars($employee['user_id']); ?>">Email</label>
-                                                                            <input type="email"
+                                                                        <div class="input-group input-group-sm mb-3">
+                                                                            <span class="input-group-text"
+                                                                                id="inputGroup-sizing-sm">Email</span>
+                                                                            <input class="form-control"
+                                                                                aria-label="Sizing example input"
+                                                                                aria-describedby="inputGroup-sizing-sm"
+                                                                                type="email"
                                                                                 id="email-<?php echo htmlspecialchars($employee['user_id']); ?>"
                                                                                 name="email"
                                                                                 value="<?php echo htmlspecialchars($employee['email']); ?>"
                                                                                 required>
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label
-                                                                                for="phone_no-<?php echo htmlspecialchars($employee['user_id']); ?>">Phone
-                                                                                Number</label>
-                                                                            <input type="text"
+                                                                        <div class="input-group input-group-sm mb-3">
+                                                                            <span class="input-group-text"
+                                                                                id="inputGroup-sizing-sm">Phone Number</span>
+                                                                            <input class="form-control"
+                                                                                aria-label="Sizing example input"
+                                                                                aria-describedby="inputGroup-sizing-sm"
+                                                                                type="text"
                                                                                 id="phone_no-<?php echo htmlspecialchars($employee['user_id']); ?>"
                                                                                 name="phone_no"
                                                                                 value="<?php echo htmlspecialchars($employee['phone_no']); ?>"
                                                                                 required>
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label
-                                                                                for="dept-<?php echo htmlspecialchars($employee['user_id']); ?>">Department</label>
-                                                                            <input type="text"
+                                                                        <div class="input-group input-group-sm mb-3">
+                                                                            <span class="input-group-text"
+                                                                                id="inputGroup-sizing-sm">Department</span>
+                                                                            <input class="form-control"
+                                                                                aria-label="Sizing example input"
+                                                                                aria-describedby="inputGroup-sizing-sm"
+                                                                                type="text"
                                                                                 id="dept-<?php echo htmlspecialchars($employee['user_id']); ?>"
                                                                                 name="dept"
                                                                                 value="<?php echo htmlspecialchars($employee['dept']); ?>"
                                                                                 required>
                                                                         </div>
+
                                                                         <input type="hidden" name="user_id"
                                                                             value="<?php echo htmlspecialchars($employee['user_id']); ?>">
                                                                         <div class="sign_btn">
-                                                                            <button type="submit">Update Employee</button>
+                                                                            <button type="submit" class="btn btn-primary">Update
+                                                                                Employee</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -257,7 +277,37 @@ $employees = isset($_SESSION['employees']) ? $_SESSION['employees'] : [];
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
             function reload() {
                 location.reload()
-            }</script>
+            }
+            function toggleInformation(bool) {
+                // <div id="information-container" style="display: none;"></div>
+                var container = document.getElementById('information-container');
+
+                if (container.style.display === 'none' || container.innerHTML === '') {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', '../information-view.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            container.innerHTML = xhr.responseText;
+                            container.style.display = 'block';
+                        }
+                    };
+                    xhr.send();
+                } else {
+                    container.style.display = 'none';
+                }
+
+
+            }
+            document.addEventListener('click', function (event) {
+                var container = document.getElementById('information-container');
+                var button = document.querySelector('button[onclick="toggleInformation()"]');
+                if (container.style.display === 'block' && !container.contains(event.target) && !button.contains(event.target)) {
+                    container.style.display = 'none';
+                }
+            });</script>
+
 </body>
 
 </html>

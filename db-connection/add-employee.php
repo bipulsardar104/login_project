@@ -15,8 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssss", $fname, $lname, $email, $phone_no, $dept);
 
     if ($stmt->execute()) {
-        echo '<script>alert("New Record Created Successfully");
-        window.location.href ="./employee_information-db-model.php"</script>';
+        $getQuery = "SELECT user_id FROM employees WHERE status = 'active' and email = '$email'";
+        $runQuery = mysqli_query($conn, $getQuery);
+        if ($runQuery) {
+            $row = mysqli_fetch_assoc($runQuery);
+            if ($row) {
+                $userId = $row['user_id'];
+                echo "<script>
+                window.location.href = '../information-view.php?userId=' + $userId;
+              </script>";
+            } else {
+                echo "No active user found with that email.";
+            }
+        }
+        // echo '<script>alert("New Record Created Successfully");
+        // window.location.href ="./employee_information-db-model.php"</script>';
     } else {
         echo "Error: " . $stmt->error;
     }

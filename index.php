@@ -1,29 +1,36 @@
 <?php
 include "./db-connection/db.php";
 ?>
+
+
+
+
 <?php include ("include_bootstrap/header.php"); ?>
+
+
+
 <form action="./db-connection/login.php" method="post">
+
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-        <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm" type="email" id="email_to_login" name="email" placeholder="Email"
-            required>
+        <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+            type="email" id="email_to_login" name="email" placeholder="Email" required>
     </div>
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-        <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm" type="password" id="pwd" name="pwd" placeholder="Password" required>
+        <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+            type="password" id="pwd" name="pwd" placeholder="Password" required oninput="validatePassword()">
     </div>
     <div class="row justify-content-center">
-        <button class='btn btn-primary col-md-4 m-1 fa-solid fa-font' type="submit">Sign
+        <button class='btn btn-primary col-md-4 m-1  ' type="submit">Sign
             In</button>
-        <button class='btn btn-success col-md-6 m-1 fa-solid fa-font' type="button" class="btn btn-primary"
-            data-bs-toggle="modal" data-bs-target="#forgotPwd">Forgot
+        <button class='btn btn-success col-md-6 m-1  ' type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#forgotPwd">Forgot
             Password</button>
     </div>
     <div class="row justify-content-center">
-        <button class='btn btn-warning col-md-6 m-1 fa-solid fa-font' type="button" class="btn btn-primary"
-            data-bs-toggle="modal" data-bs-target="#createNew">
+        <button class='btn btn-warning col-md-6 m-1  ' type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#createNew">
             Create New
         </button>
     </div>
@@ -64,7 +71,7 @@ include "./db-connection/db.php";
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class='btn btn-primary col-md-4 m-1 fa-solid fa-font' type="submit">Sign Up</button>
+                <button class='btn btn-primary col-md-4 m-1  ' type="submit">Sign Up</button>
             </div>
             </form>
         </div>
@@ -88,7 +95,7 @@ include "./db-connection/db.php";
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class='btn btn-success col-md-6 m-1 fa-solid fa-font' type="submit">Send Confirmation
+                <button class='btn btn-success col-md-6 m-1  ' type="submit">Send Confirmation
                     Link</button>
             </div>
             </form>
@@ -97,7 +104,6 @@ include "./db-connection/db.php";
                     event.preventDefault();
 
                     const email = document.getElementById('email_to_reset').value;
-                    console.log(email);
                     fetch('./db-connection/forgotpwd-db-model.php', {
                         method: 'POST',
                         headers: {
@@ -145,8 +151,8 @@ include "./db-connection/db.php";
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class='btn btn-success col-md-6 m-1 fa-solid fa-font' type="submit" name="otpVerify"
-                    data-bs-toggle="modal" data-bs-target="#otp">Verify OTP</button>
+                <button class='btn btn-success col-md-6 m-1  ' type="submit" name="otpVerify" data-bs-toggle="modal"
+                    data-bs-target="#otp">Verify OTP</button>
             </div>
             </form>
         </div>
