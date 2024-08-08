@@ -83,8 +83,8 @@
             right: 0;
             margin-top: 0;
             margin-left: 0.125rem;
-            background: rgb(255, 242, 215);
-            background: linear-gradient(0deg, rgba(255, 242, 215, 1) 5%, rgba(180, 206, 207, 1) 100%);
+            background: rgb(255, 255, 255);
+            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 5%, rgba(180, 206, 207, 1) 100%);
             font-size: 0.7rem;
 
         }
@@ -101,6 +101,24 @@
         }
 
         /*  */
+     .card {
+            display: none;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050; 
+            transition: all 0.3s ease-in-out;
+        }
+        .expand {
+            display: block !important;
+            opacity: 1 !important;
+            max-height: 1000px;
+        }
+        .btn-disappear {
+            transition: all 0.3s ease-in-out;
+        }
     </style>
 
 </head>

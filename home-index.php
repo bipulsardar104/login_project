@@ -1,5 +1,8 @@
 <?php include "./include_bootstrap/main-contents-header.php" ?>
-
+<?php
+session_start();
+$employees = isset($_SESSION['fname']) ? $_SESSION['fname'] : [];
+?>
 <nav class="navbar navbar-expand-sm bg-body-tertiary nav-bar-color">
     <div class="container-fluid">
         <div class="row w-100 justify-content-between">
@@ -8,20 +11,37 @@
             </div>
             <div class="col d-flex justify-content-center">
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                    <form class="d-flex w-100" role="search">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                                aria-describedby="basic-addon1">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
-                        </div>
+                    <form class="d-flex w-100" role="search" id="search_form">
+                        <button type="button" class="btn rounded-pill border border-2 border-white w-100"
+                            id="search_btn">
+                            <div class="col">
+                                <span class="d-flex justify-content-between align-items-center fw-normal fs-6">
+                                    Search any action or ask for help&nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </button>
                     </form>
+                    <div class="card w-50 mt-5" id="search_card">
+                        <div class="card-header">
+                            <input class="w-100" id="nav-search" placeholder="Type your query...">
+                        </div>
+                        <div class="card-body">
+                            Hi
+                        </div>
+                        <div class="card-footer">
+                            Hi
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="col d-flex justify-content-end align-items-center z-3">
                 <div class="btn-group dropStart">
                     <button type="button" class="btn btn-transparent">
                         <div class="justify-items-center">
-                            <span class="font-size" id="label_side_bar_icon">Me&nbsp;&nbsp;<svg
+                            <span class="font-size"
+                                id="label_side_bar_icon"><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']; ?>&nbsp;&nbsp;<svg
                                     xmlns="http://www.w3.org/2000/svg" width="9" height="9" fill="currentColor"
                                     class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                                     <path
@@ -30,16 +50,14 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" data-value="Yes"> <i
+                        <li><a class="dropdown-item" href="#" dest="#profile-nav" data-value="Yes"> <i
                                     class="fas fa-user-circle"></i>&nbsp;&nbsp;Profile</a></li>
-                        <li><a class="dropdown-item" href="#" data-value="No"> <i
+                        <li><a class="dropdown-item" href="#" dest="#resetPwd-nav" data-value="No"> <i
                                     class="fas fa-key"></i>&nbsp;&nbsp;Change
                                 Password</a></li>
-                        <li><a class="dropdown-item" href="#" data-value="No"><i
+                        <li><a class="dropdown-item" href="#" dest="#logOut-nav" data-value="No"><i
                                     class="fas fa-sign-out"></i>&nbsp;&nbsp;Log
                                 Out</a></li>
-
-
                     </ul>
                 </div>
 
@@ -184,6 +202,16 @@
         <div class="tab-pane fade " id="v-pills-performance" role="tabpanel" aria-labelledby="v-pills-performance-tab"
             tabindex="0">g</div>
 
+
+
+        <!-- keeping all the redirection from the dropdown buttons -->
+
+        <div class="tab-pane fade " id="profile-nav" role="tabpanel" aria-labelledby="v-pills-performance-tab"
+            tabindex="0">Bipul</div>
+        <div class="tab-pane fade " id="resetPwd-nav" role="tabpanel" aria-labelledby="v-pills-performance-tab"
+            tabindex="0">Sardar</div>
+        <div class="tab-pane fade " id="logOut-nav" role="tabpanel" aria-labelledby="v-pills-performance-tab"
+            tabindex="0">Bipul Sardar</div>
     </div>
 </div>
 
