@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
         session_start();
         $_SESSION['employees'] = $employees;
-        header("Location: ../src/success.php");
+        header("Location: ../home-index.php");
         exit();
     } else {
         echo '<script>alert("No user found");

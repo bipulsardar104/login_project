@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include "./db-connection/main-connection-db-model.php";
 
 if ($conn->connect_error) {
@@ -63,15 +63,17 @@ if ($result->num_rows > 0) {
         </div>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Date of Birth</span>
-            <input type="date" class="form-control" name="dob" value="<?php echo $row['dob']; ?>" required>
+            <input type="text" class="form-control" name="dob" value="<?php echo $row['dob']; ?>" required>
         </div>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Marital Status</span>
-            <input type="text" class="form-control" name="maritial_status" value="<?php echo $row['maritial_status']; ?>" required>
+            <input type="text" class="form-control" name="maritial_status" value="<?php echo $row['maritial_status']; ?>"
+                required>
         </div>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Physically Handicapped</span>
-            <input type="text" class="form-control" name="physically_handicapped" value="<?php echo $row['physically_handicapped']; ?>" required>
+            <input type="text" class="form-control" name="physically_handicapped"
+                value="<?php echo $row['physically_handicapped']; ?>" required>
         </div>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Blood Group</span>
@@ -107,15 +109,18 @@ if ($result->num_rows > 0) {
         <h2>Contact Details</h2>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Personal Mobile Number</span>
-            <input type="text" class="form-control" name="personal_mobile_number" value="<?php echo $row['personal_mobile_number']; ?>" required>
+            <input type="text" class="form-control" name="personal_mobile_number"
+                value="<?php echo $row['personal_mobile_number']; ?>" required>
         </div>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Personal Email</span>
-            <input type="email" class="form-control" name="personal_email" value="<?php echo $row['personal_email']; ?>" required>
+            <input type="email" class="form-control" name="personal_email" value="<?php echo $row['personal_email']; ?>"
+                required>
         </div>
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">Residential Number</span>
-            <input type="text" class="form-control" name="residence_number" value="<?php echo $row['residence_number']; ?>" required>
+            <input type="text" class="form-control" name="residence_number" value="<?php echo $row['residence_number']; ?>"
+                required>
         </div>
 
         <h2>Address Details</h2>

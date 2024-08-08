@@ -1,16 +1,10 @@
-<?php include ("./include_bootstrap/main-contents-header.php"); ?>
+<?php include "./include_bootstrap/main-contents-header.php" ?>
 
 <nav class="navbar navbar-expand-sm bg-body-tertiary nav-bar-color">
     <div class="container-fluid">
         <div class="row w-100 justify-content-between">
             <div class="col d-flex align-items-center">
-                <img src="./assets/icons/home-1-svgrepo-com.svg" alt="Home Icon" height="25px" width="25px">
-                <a class="navbar-brand fs-6 ms-2" href="#">Home</a>
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <img src="https://cdn.kekastatic.net/shared/branding/logo/keka-logo-light.svg" alt="KEKA">
             </div>
             <div class="col d-flex justify-content-center">
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
@@ -23,22 +17,33 @@
                     </form>
                 </div>
             </div>
-            <div class="col d-flex justify-content-end align-items-center">
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-transparent dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Person's Name
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+            <div class="col d-flex justify-content-end align-items-center z-3">
+                <div class="btn-group dropStart">
+                    <button type="button" class="btn btn-transparent">
+                        <div class="justify-items-center">
+                            <span class="font-size" id="label_side_bar_icon">Me&nbsp;&nbsp;<svg
+                                    xmlns="http://www.w3.org/2000/svg" width="9" height="9" fill="currentColor"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg></span>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-value="Yes"> <i
+                                    class="fas fa-user-circle"></i>&nbsp;&nbsp;Profile</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="No"> <i
+                                    class="fas fa-key"></i>&nbsp;&nbsp;Change
+                                Password</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="No"><i
+                                    class="fas fa-sign-out"></i>&nbsp;&nbsp;Log
+                                Out</a></li>
+
+
                     </ul>
                 </div>
+
+
                 <div class="ms-3">
                     <div class="circle">
                         <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
@@ -50,35 +55,140 @@
     </div>
 </nav>
 
-<div class="d-flex align-items-start">
-    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-            type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</button>
-        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-            type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-        <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled"
-            type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false" disabled>Disabled</button>
-        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
-            type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
-        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"
-            type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+<div class="main-container">
+    <div class="sidebar nav flex-column me-3 nav-underline" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <!-- Home Section  -->
+        <button type="button" class="btn btn-secondary" id="v-pills-home-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+            <div class="row justify-items-center">
+                <i class="fa fa-home"></i>
+                <span class="font-size" id="label_side_bar_icon">Home</span>
+            </div>
+        </button>
+
+        <!-- Profile Section -->
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary" id="v-pills-profile-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                aria-selected="false">
+                <div class="row justify-items-center">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="font-size" id="label_side_bar_icon">Me</span>
+                </div>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-value="Yes">Leave</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Attendance</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Performance</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Expenses & Travel</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Help Desk</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Apps</a></li>
+
+            </ul>
+        </div>
+
+        <!-- Message Section -->
+        <button type="button" class="btn btn-secondary" id="v-pills-messages-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+            <div class="row justify-items-center">
+                <i class="fa fa-commenting-o"></i>
+                <span class="font-size" id="label_side_bar_icon">Inbox</span>
+            </div>
+        </button>
+        <!-- Team Section -->
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary" id="v-pills-team-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-team" type="button" role="tab" aria-controls="v-pills-team"
+                aria-selected="false">
+                <div class="row justify-items-center">
+                    <i class="fa fa-group"></i>
+                    <span class="font-size" id="label_side_bar_icon">My Team</span>
+                </div>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-value="No">Summary</a></li>
+
+            </ul>
+        </div>
+        <!-- Finance Section -->
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary" id="v-pills-finance-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-finance" type="button" role="tab" aria-controls="v-pills-finance"
+                aria-selected="false">
+                <div class="row justify-items-center">
+                    <i class="fa fa-rupee fa-lg"></i>
+                    <span class="font-size" id="label_side_bar_icon">My Finances</span>
+                </div>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-value="No">Summary</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">My Pay</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Manage Tax</a></li>
+
+            </ul>
+        </div>
+        <!-- Organization Section -->
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary" id="v-pills-org-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-org" type="button" role="tab" aria-controls="v-pills-org"
+                aria-selected="false">
+                <div class="row justify-items-center">
+                    <i class="material-icons">location_city</i>
+                    <span class="font-size" id="label_side_bar_icon">Org</span>
+                </div>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-value="No">Employees</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Documents</a></li>
+                <li><a class="dropdown-item" href="#" data-value="No">Engage</a></li>
+
+            </ul>
+        </div>
+        <!-- Performance Section -->
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary" id="v-pills-performance-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-performance" type="button" role="tab" aria-controls="v-pills-performance"
+                aria-selected="false">
+                <div class="row justify-items-center">
+                    <i class="fa fa-bar-chart"></i>
+                    <span class="font-size" id="label_side_bar_icon">Performance</span>
+                </div>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-value="No">Objective</a></li>
+
+            </ul>
+        </div>
     </div>
-    <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
-            tabindex="0">...</div>
+
+    <div class="tab-content">
+
+        <div class="tab-pane fade " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+            a
+        </div>
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
-            tabindex="0">...</div>
-        <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab"
-            tabindex="0">...</div>
+            tabindex="0">b
+        </div>
         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"
-            tabindex="0">...</div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"
-            tabindex="0">...</div>
+            tabindex="0">c</div>
+        <div class="tab-pane fade" id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-team-tab" tabindex="0">
+            <?php include "./index.php" ?>
+        </div>
+        <div class="tab-pane fade" id="v-pills-finance" role="tabpanel" aria-labelledby="v-pills-finance-tab"
+            tabindex="0"><?php include "./list.php" ?>
+        </div>
+        <div class="tab-pane fade" id="v-pills-org" role="tabpanel" aria-labelledby="v-pills-org-tab" tabindex="0">
+            f</div>
+        <div class="tab-pane fade " id="v-pills-performance" role="tabpanel" aria-labelledby="v-pills-performance-tab"
+            tabindex="0">g</div>
+
     </div>
 </div>
 
 
 
 
-
-<?php include ("./include_bootstrap/main-contents-footer.php"); ?>
+<script src="./js/common.js"></script>
+<?php include "./include_bootstrap/main-contents-footer.php";
