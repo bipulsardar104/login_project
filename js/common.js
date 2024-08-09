@@ -29,7 +29,6 @@ $(document).ready(function () {
       currentDestination = dest;
     },
   });
-
   $("#nav-search").on("input", function () {
     var searchValue = $(this).val();
 
@@ -41,11 +40,11 @@ $(document).ready(function () {
         var data = JSON.parse(response);
 
         $("#search-results").empty();
-
         if (data.length > 0) {
           var resultsHtml = "<ul class='list-group'>";
           data.forEach(function (item) {
-            resultsHtml += "<li class='list-group-item'>";
+            resultsHtml +=
+              "<li class='list-group-item'><a href='#' class='dropdown-item'";
             resultsHtml +=
               "<strong>Name:</strong> " +
               item.fname +
@@ -53,8 +52,7 @@ $(document).ready(function () {
               item.lname +
               "<br>";
             resultsHtml += "<strong>Department:</strong> " + item.dept + "<br>";
-
-            resultsHtml += "</li>";
+            resultsHtml += "</a></li>";
           });
           resultsHtml += "</ul>";
 
@@ -102,6 +100,7 @@ $(document).ready(function () {
     var card = document.getElementById("search_card");
 
     if (!card.contains(event.target) && !button.contains(event.target)) {
+      $("#nav-search").empty();
       card.classList.remove("expand");
       button.classList.remove("collapse");
     }

@@ -21,18 +21,20 @@ $employees = isset($_SESSION['fname']) ? $_SESSION['fname'] : [];
                                 </span>
                             </div>
                         </button>
+                        <div id="search_card" class="card"
+                            style="display: none;opacity: 0;position: absolute;top: 200%;left: 50%;transform: translate(-50%, -50%);z-index: 1050; transition: all 0.3s ease-in-out;max-height: 70vh; width: 80%;">
+                            <div class="card-header" style="position: sticky;top: 0;z-index: 100;background: #fff;">
+                                <input id="nav-search" type="text" class="form-control"
+                                    placeholder="Type your query..." />
+                            </div>
+
+                            <div class="card-body" style="max-height: 50vh; overflow-y: auto;" id="search-results">
+                            </div>
+                        </div>
                     </form>
-                    <div class="card w-50 mt-5" id="search_card">
-                        <div class="card-header">
-                            <input class="w-100" id="nav-search" placeholder="Type your query...">
-                        </div>
-                        <div class="card-body">
-                            Hi
-                        </div>
-                        <div class="card-footer">
-                            Hi
-                        </div>
-                    </div>
+
+
+
                 </div>
             </div>
 
